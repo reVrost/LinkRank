@@ -22,7 +22,6 @@ namespace LinkRank
         {
             return hourlyRankerCache.GetOrCreate(request.SearchUrl + request.SearchWord, entry =>
               {
-                  Console.WriteLine(request.SearchUrl + request.SearchWord);
                   entry.SlidingExpiration = TimeSpan.FromMinutes(CacheExpirationInMinutes);
                   var rankResult = linkRankService.FetchRank(request.SearchWord, request.SearchUrl);
                   return new FetchRankResponse

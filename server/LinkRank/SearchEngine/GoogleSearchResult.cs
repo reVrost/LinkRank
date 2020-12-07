@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace LinkRank
+namespace LinkRank.SearchEngine
 {
     public sealed class GoogleSearchResult
     {
