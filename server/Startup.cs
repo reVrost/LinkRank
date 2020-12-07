@@ -26,6 +26,13 @@ namespace LinkRank
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSingleton<ILinkRankService, LinkRankService>();
+            services.AddCors(o => o.AddPolicy("LinkRankPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,6 +47,7 @@ namespace LinkRank
                 app.UseHsts();
             }
 
+            app.UseCors("LinkRankPolicy");
             app.UseHttpsRedirection();
             app.UseMvc();
         }
